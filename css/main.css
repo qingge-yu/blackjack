@@ -1,0 +1,52 @@
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-section {
+    border: 1px solid red;
+    height: 20vh;
+    width: 80%;
+}
+
+#center-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+
+#center-container>div:first-child {
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* #left-btn {
+    display: flex;
+    justify-content: center;
+} */
+
+#right-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#house {
+    width: 100%;
+    border: 1px solid black;
+
+}
+
+#player {
+    width: 100%;
+    border: 1px solid black;
+}
