@@ -1,6 +1,12 @@
 /*----- constants -----*/
 
-let ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']
+const suits = ['d', 'h', 's', 'c']
+
+const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']
+
+let deck = null
+
+shuffle()
 
 const PLAYER_LOOKUP = {
     '1': {
@@ -13,22 +19,33 @@ const PLAYER_LOOKUP = {
 
 /*----- app's state (variables) -----*/
 
-let turn, cardValue, cardValueTotal, deck, winner
+let turn, cardValueTotal, winner
+
+let card = deck[Math.floor(Math.random() * 52)]
+
+let cardValue = 0;
+
+if (card[1] === 'J' || card[1] === 'Q' || card[1] === 'K' || card[1] === '1') {
+    cardValue = 10
+} else if (card[1] === 'A') {
+    cardValue = 1
+} else {
+    cardValue = card[2]
+}
 
 
 /*----- cached element references -----*/
 
-const resetBtnEl = document.querySelector('#resetBtn')
+// const resetBtnEl = document.querySelector('#resetBtn')
 
-const hitBtnEl = document.querySelector('#hitBtn')
+// const hitBtnEl = document.querySelector('#hitBtn')
 
-const standBtnEl = document.querySelector('#standBtn')
+// const standBtnEl = document.querySelector('#standBtn')
 
-const cardFaceEl = document.querySelectorAll('card')
+// const cardFaceEl = document.querySelectorAll('card')
 
-// document.querySelector('div').classList.add(card.face)
 
-/*----- event listeners -----*/
+// /*----- event listeners -----*/
 
 // resetBtnEl.addEventListener('click', handleResetClick)
 
@@ -39,10 +56,10 @@ const cardFaceEl = document.querySelectorAll('card')
 
 // /*----- functions -----*/
 
-// function init() {
-//     turn = 1
-//     winner = null
-// }
+function init() {
+    turn = 1
+    winner = null
+}
 
 // function handleResetClick() {
 //     init()
@@ -56,25 +73,28 @@ const cardFaceEl = document.querySelectorAll('card')
 //     turn *= -1
 // }
 
-
-
-
-
-// const card = {
-//     face: 'dQ',
-//     value: 10
-// }
-
-// function sortCardFace() {
-//     if (cardFaceEl.textContent.includes('A')) {
-//         cardValue = 1
-//     } else if (cardFaceEl.textContent.includes('J') || cardFaceEl.textContent.includes('Q') || cardFaceEl.textContent.includes('K')) {
-//         cardValue = 10
-//     } else {
-//         cardValue = cardFaceEl.textContent.replace(/\D/g, '')
-//     }
-// }
-
-for (let rankCounter = 0; rankCounter < 13; rankCounter++) {
-    console.log(ranks[rankCounter])
+function handleHitClick() {
+    drawCard()
 }
+
+function drawCard() {
+    let idx = 1
+    deck = deck.filter(function (usedCard) {
+        return usedCard !== card
+    })
+    card = deck[Math.floor(Math.random() * (52 - idx))]
+    idx++
+}
+
+function shuffle() {
+    deck = []
+    for (let suitIdx = 0; suitIdx < 4; suitIdx++) {
+        for (let rankIdx = 0; rankIdx < 13; rankIdx++) {
+            deck.push(suits[suitIdx] + ranks[rankIdx])
+        }
+    }
+}
+
+
+// start game
+init()
