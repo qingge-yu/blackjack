@@ -10,17 +10,28 @@ body {
     justify-content: center;
 }
 
-.card-section {
+.house-cards {
     border: 1px solid red;
     height: 20vh;
     width: 80%;
 }
 
+.player-cards {
+    border: 1px solid red;
+    height: 20vh;
+    width: 80%;
+}
+
+
 #center-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
+}
+
+#center-container>div:last-child {
+    margin-left: auto;
 }
 
 #center-container>div:first-child {
