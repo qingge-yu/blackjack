@@ -16,7 +16,7 @@ const PLAYER_LOOKUP = {
 
 /*----- app's state (variables) -----*/
 
-let turn, cardValue, playerCardValueTotal, dealerCardValueTotal, winner
+let turn, cardValue, playerHandTotal, dealerHandTotal, winner
 
 const playerHand = []
 const dealerHand = []
@@ -30,7 +30,7 @@ const resetBtnEl = document.getElementById('reset-btn')
 const hitBtnEl = document.getElementById('hit-btn')
 const standBtnEl = document.getElementById('stand-btn')
 const playerCardsEl = document.querySelector('.player-cards')
-const dealerCardsEl = document.querySelector('.house-cards')
+const dealerCardsEl = document.querySelector('.dealer-cards')
 const messageEl = document.querySelector('h2')
 
 
@@ -84,13 +84,13 @@ function changeTurn() {
 
 function dealerTurn() {
     drawCard(dealerHand)
-
+    handValue(dealerHand)
 }
 
 function playerTurn() {
     drawCard(playerHand)
     console.log("player hand: " + playerHand)
-
+    handValue(playerHand)
 }
 
 function drawCard(array) {
@@ -124,25 +124,34 @@ function addCardToHand() {
 
 function handValue(array) {
     cardValue = 0
-    array.forEach(function (idx) {
-        let arr = idx.split('')
+    array.forEach(function (card) {
+        let arr = card.split('')
         let cardIdx = arr[arr.length - 1]
         if (cardIdx === 'J' || cardIdx === 'Q' || cardIdx === 'K' || cardIdx === '0') {
-            cardValue = 10
+            cardValue += 10
         } else if (cardIdx === 'A') {
-            cardValue = 1
+            cardValue += 1
         } else {
-            cardValue = cardIdx
+            cardValue += parseInt(cardIdx, 10)
         }
     })
     console.log(cardValue)
 }
 
-// function playerHandValueTotal() {
-//     if (playerAddCardToHand) {
-//         playerCardValueTotal += cardValue
-//     }
-// }
+function win() {
+    if (handValue(dealerHand) > handValue(playerHand)) {
+
+    }
+}
+
+function render() {
+    if (handValue(dealerHand).cardValue > handValue(playerHand).cardValue) {
+        messageEl.textContent = "House wins!"
+    } else {
+        messageEl.textContent = "Player wins!"
+    }
+}
+
 
 
 
