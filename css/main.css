@@ -10,17 +10,18 @@ body {
     justify-content: center;
 }
 
-.house-cards {
-    border: 1px solid red;
-    height: 20vh;
-    width: 80%;
-}
-
 .player-cards {
     border: 1px solid red;
     height: 20vh;
     width: 80%;
 }
+
+.dealer-cards {
+    border: 1px solid red;
+    height: 20vh;
+    width: 80%;
+}
+
 
 
 #center-container {
