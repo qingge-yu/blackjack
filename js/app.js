@@ -84,13 +84,13 @@ function changeTurn() {
 
 function dealerTurn() {
     drawCard(dealerHand)
-    handValue(dealerHand)
+    checkWin()
 }
 
 function playerTurn() {
     drawCard(playerHand)
     console.log("player hand: " + playerHand)
-    handValue(playerHand)
+    checkWin()
 }
 
 function drawCard(array) {
@@ -138,15 +138,17 @@ function handValue(array) {
     console.log(cardValue)
 }
 
-function win() {
-    if (handValue(dealerHand) > handValue(playerHand)) {
-
+function checkWin() {
+    if (handValue(dealerHand) > handValue(playerHand) && handValue(dealerHand) <= 21) {
+        winner = -1
+    } else {
+        winner = 1
     }
 }
 
 function render() {
-    if (handValue(dealerHand).cardValue > handValue(playerHand).cardValue) {
-        messageEl.textContent = "House wins!"
+    if (!winner) {
+        messageEl.textContent = `${PLAYER_LOOKUP[turn].name}'s turn`
     } else {
         messageEl.textContent = "Player wins!"
     }
