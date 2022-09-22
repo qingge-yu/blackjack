@@ -15,17 +15,7 @@ body {
     background-image: url("https://i.imgur.com/2M95s6q.png");
 }
 
-.player-cards {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 5px solid black;
-    height: 20vh;
-    width: 80%;
-    background-image: url("https://i.imgur.com/TXGiwM9.jpeg");
-}
-
-.dealer-cards {
+.player-cards, .dealer-cards {
     display: flex;
     align-items: center;
     justify-content: center;
