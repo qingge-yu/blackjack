@@ -170,7 +170,7 @@ function checkWin(cb) {
         messageEl.textContent = "You win!"
     } else if (dealerTotal === 21) {
         messageEl.textContent = "Dealer wins!"
-    } else if (dealerTotal === playerTotal) {
+    } else if (dealerTotal === playerTotal && dealerTotal <= 21) {
         messageEl.textContent = "It's a tie!"
     } else if (playerTotal > 21) {
         messageEl.textContent = "Dealer wins!"
