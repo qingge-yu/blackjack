@@ -68,6 +68,7 @@ function init() {
     playedCards = []
     cardCount = 0
     hitBtnEl.style.display = "inline-block"
+    resetBtnEl.style.display = "none"
 }
 
 function handleResetClick() {
@@ -88,9 +89,9 @@ function dealerTurn() {
     while (handValue(dealerHand) < 17 && handValue(playerHand) <= 21) {
         drawCard(dealerHand)
         handValue(dealerHand)
-        messageDealerEl.textContent = "Dealer hand now: " + handValue(dealerHand)
     }
     checkWin()
+    messageDealerEl.textContent = "Dealer hand now: " + handValue(dealerHand)
 }
 
 function playerTurn() {
@@ -169,6 +170,8 @@ function checkWin(cb) {
         messageEl.textContent = "You win!"
     } else if (dealerTotal === 21) {
         messageEl.textContent = "Dealer wins!"
+    } else if (dealerTotal === playerTotal) {
+        messageEl.textContent = "It's a tie!"
     } else if (playerTotal > 21) {
         messageEl.textContent = "Dealer wins!"
     } else if (playerTotal > dealerTotal && dealerTotal > 17) {
@@ -178,6 +181,7 @@ function checkWin(cb) {
     } else if (playerTotal < dealerTotal && dealerTotal > 21) {
         messageEl.textContent = "You win!"
     }
+    resetBtnEl.style.display = "inline-block"
 }
 
 // start game

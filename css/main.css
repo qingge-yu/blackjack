@@ -53,13 +53,10 @@ body {
 #center-container>div:first-child {
     margin-right: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
-
-/* #left-btn {
-    display: flex;
-    justify-content: center;
-} */
 
 #right-btn {
     display: flex;
