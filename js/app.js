@@ -72,19 +72,15 @@ function init() {
 
 function handleResetClick() {
     init()
-    // console.log(deck)
 }
 
 function handleHitClick() {
     playerTurn()
-    // console.log(deck)
-    // messageEl.textContent = "your hand now: " + playerTotal
 }
 
 function handleStandClick() {
     turn *= -1
     dealerTurn()
-    // console.log(deck)
 }
 
 function dealerTurn() {
@@ -94,44 +90,36 @@ function dealerTurn() {
         handValue(dealerHand)
         messageDealerEl.textContent = "Dealer hand now: " + handValue(dealerHand)
     }
-    // console.log("dealer hand: " + handValue(dealerHand))
     checkWin()
 }
 
 function playerTurn() {
     drawCard(playerHand)
-    // console.log("player hand: " + playerHand)
-
-
     messagePlayerEl.textContent = "Your hand now: " + handValue(playerHand)
-
 }
 
 function drawCard(array) {
     let randomCard = deck[Math.floor(Math.random() * (52 - cardCount))]
-    // console.log("card: " + randomCard)
     if (!playedCards.includes(randomCard)) {
         playedCards.push(randomCard)
         array.push(randomCard)
         deck = deck.filter(function (usedCard) {
             return usedCard !== randomCard
         })
-        // console.log("played cards:" + playedCards)
         addCardToHand()
         cardCount++
     }
-    // console.log("turn: " + turn)
 }
 
 
 function addCardToHand() {
     if (turn === 1) {
         let playerNewCard = document.createElement('div')
-        playerNewCard.classList.add('card', `${playerHand[playerHand.length - 1]}`)
+        playerNewCard.classList.add('card', `${playerHand[playerHand.length - 1]}`, 'large')
         playerCardsEl.appendChild(playerNewCard)
     } else if (turn === -1) {
         let dealerNewCard = document.createElement('div')
-        dealerNewCard.classList.add('card', `${dealerHand[dealerHand.length - 1]}`)
+        dealerNewCard.classList.add('card', `${dealerHand[dealerHand.length - 1]}`, 'large')
         dealerCardsEl.appendChild(dealerNewCard)
     }
 }
@@ -149,7 +137,6 @@ function handValue(array) {
             cardValue += parseInt(cardIdx, 10)
         }
     })
-
     let aceArray = []
     array.forEach(function (name) {
         name = name.split('')
@@ -167,19 +154,16 @@ function handValue(array) {
             aceCount--
         }
     }
-
     if (cardValue > 21 && turn === 1) {
         hitBtnEl.style.display = "none"
     }
     return cardValue
-
 }
 
 
 function checkWin(cb) {
     const playerTotal = handValue(playerHand)
     const dealerTotal = handValue(dealerHand)
-
 
     if (playerTotal === 21) {
         messageEl.textContent = "You win!"
@@ -194,9 +178,6 @@ function checkWin(cb) {
     } else if (playerTotal < dealerTotal && dealerTotal > 21) {
         messageEl.textContent = "You win!"
     }
-
-
-
 }
 
 // start game
