@@ -4,14 +4,6 @@ const suits = ['d', 'h', 's', 'c']
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']
 let deck = null
 
-const PLAYER_LOOKUP = {
-    '1': {
-        name: 'Player',
-    },
-    '-1': {
-        name: 'Dealer',
-    }
-}
 
 /*----- app's state (variables) -----*/
 
@@ -23,7 +15,6 @@ let playedCards = []
 let cardCount = 0
 let balance = 100
 let bet = 0
-// let newBalance = 100
 
 
 /*----- cached element references -----*/
@@ -56,6 +47,7 @@ betTwoEl.addEventListener('click', handleBetTwoClick)
 betFiveEl.addEventListener('click', handleBetFiveClick)
 betTenEl.addEventListener('click', handleBetTenClick)
 newGameEl.addEventListener('click', newGame)
+
 
 
 /*----- functions -----*/
