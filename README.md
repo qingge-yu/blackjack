@@ -47,7 +47,7 @@ https://qingge-yu.github.io/blackjack/
     <li> For placing another bet on the following round, player would need to choose the bet amount again<br />
 <br />
 <br />
-<h2>-- Next Steps --/h2>
+<h2>-- Next Steps --</h2>
 <br />
 Future inhancement would include: <br />
     <li> improving UI<br />
@@ -56,4 +56,4 @@ Future inhancement would include: <br />
     <li> adding multi-player mode<br />
 <br />
 <br />
-<h3>-- Have fun playing, good luck! --</h3>
+<h4>-- Have fun playing, good luck! --</h4>
