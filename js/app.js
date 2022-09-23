@@ -21,8 +21,6 @@ let playerHand = []
 let dealerHand = []
 let playedCards = []
 let cardCount = 0
-let balance = 100
-let bet = 0
 
 
 /*----- cached element references -----*/
@@ -35,24 +33,15 @@ const dealerCardsEl = document.querySelector('.dealer-cards')
 const messageEl = document.querySelector('h2')
 const messageDealerEl = document.getElementById('dealer-score')
 const messagePlayerEl = document.getElementById('player-score')
-const betEl = document.querySelector('.bet')
-const betTwoEl = document.getElementById('two')
-const betFiveEl = document.getElementById('five')
-const betTenEl = document.getElementById('ten')
-const balanceEl = document.getElementById('balance')
-const betAmountEl = document.getElementById('bet-amount')
-const newGameEl = document.getElementById('new-game')
-
 
 
 /*----- event listeners -----*/
 
 resetBtnEl.addEventListener('click', handleResetClick)
+
 hitBtnEl.addEventListener('click', handleHitClick)
+
 standBtnEl.addEventListener('click', handleStandClick)
-betTwoEl.addEventListener('click', handleBetTwoClick)
-betFiveEl.addEventListener('click', handleBetFiveClick)
-betTenEl.addEventListener('click', handleBetTenClick)
 
 
 /*----- functions -----*/
@@ -78,16 +67,9 @@ function init() {
     dealerHand = []
     playedCards = []
     cardCount = 0
-    standBtnEl.disabled = false
-    hitBtnEl.disabled = false
-    balanceEl.textContent = `Your balance: $${calBalance(balance)}`
-    betAmountEl.textContent = ''
-    betTwoEl.disabled = false
-    betFiveEl.disabled = false
-    betTenEl.disabled = false
+    hitBtnEl.style.display = "inline-block"
+    resetBtnEl.style.display = "none"
 }
-
-
 
 function handleResetClick() {
     init()
@@ -100,9 +82,6 @@ function handleHitClick() {
 function handleStandClick() {
     turn *= -1
     dealerTurn()
-    standBtnEl.disabled = true
-    hitBtnEl.disabled = true
-    betResult()
 }
 
 function dealerTurn() {
@@ -177,21 +156,22 @@ function handValue(array) {
         }
     }
     if (cardValue > 21 && turn === 1) {
-        hitBtnEl.disabled = true
+        hitBtnEl.style.display = "none"
     }
     return cardValue
 }
 
 
-function checkWin() {
+function checkWin(cb) {
     const playerTotal = handValue(playerHand)
     const dealerTotal = handValue(dealerHand)
-    if (dealerTotal === playerTotal && dealerTotal <= 21) {
-        messageEl.textContent = "It's a tie!"
-    } else if (playerTotal === 21) {
+
+    if (playerTotal === 21) {
         messageEl.textContent = "You win!"
     } else if (dealerTotal === 21) {
         messageEl.textContent = "Dealer wins!"
+    } else if (dealerTotal === playerTotal && dealerTotal <= 21) {
+        messageEl.textContent = "It's a tie!"
     } else if (playerTotal > 21) {
         messageEl.textContent = "Dealer wins!"
     } else if (playerTotal > dealerTotal && dealerTotal >= 17) {
@@ -202,72 +182,6 @@ function checkWin() {
         messageEl.textContent = "You win!"
     }
     resetBtnEl.style.display = "inline-block"
-}
-
-
-//--Icebox: Betting features--
-
-function checkBetBtn(bet) {
-    if (handleBetTwoClick) {
-        bet += 2
-    } else if (handleBetFiveClick) {
-        bet += 5
-    } else if (handleBetTenClick) {
-        bet += 10
-    }
-    return bet
-}
-
-function calBalance(balance) {
-    balance = balance - checkBetBtn(bet)
-    if (balance < 2) {
-        messageEl.textContent = "GAME OVER"
-        newGameEl.style.display = "inline-block"
-        resetBtnEl.style.display = "none"
-    }
-    return balance
-}
-
-function handleBetTwoClick() {
-    betFiveEl.disabled = true
-    betTenEl.disabled = true
-    balanceEl.textContent = `Your balance: $${calBalance(balance)}`
-    betAmountEl.textContent = `Current bet: $${checkBetBtn(bet)}`
-}
-
-function handleBetFiveClick() {
-    betTwoEl.disabled = true
-    betTenEl.disabled = true
-    balanceEl.textContent = `Your balance: $${calBalance(balance)}`
-    betAmountEl.textContent = `Current bet: $${checkBetBtn(bet)}`
-}
-
-function handleBetTenClick() {
-    betTwoEl.disabled = true
-    betTenEl.disabled = true
-    balanceEl.textContent = `Your balance: $${calBalance(balance)}`
-    betAmountEl.textContent = `Current bet: $${checkBetBtn(bet)}`
-}
-
-function betResult() {
-    let newBalance = calBalance(balance)
-    let betAmt = checkBetBtn(bet)
-    if (messageEl.textContent = "You win!") {
-        newBalance = newBalance + betAmt * 2
-    } else if (messageEl.textContent = "Dealer wins!") {
-        newBalance = newBalance - betAmt
-    } else if (messageEl.textContent = "It's a tie!") {
-        newBalance = newBalance
-    }
-    balanceEl.textContent = `Your balance: $${newBalance}`
-}
-
-
-function newGame() {
-    init()
-    calBalance(balance) = 100
-    bet = 0
-    newGameEl.style.display = 'none'
 }
 
 // start game
