@@ -6,7 +6,7 @@ This is a Blackjack browser game that includes:<br />
     - a "new game" feature that when the player runs out of money, the game is over, player can choose to start a new game with full balance.<br />
 <br />
 <h2>Rules:</h2>
-    <h3>Basic gameplay:<h3/>
+    <h3>Basic gameplay:</h3>
     - player click "hit" to draw a new card<br />
     - player click "stand" to finish round, dealer draws card<br />
     - J, Q, K each have a value of 10<br />
