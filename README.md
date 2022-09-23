@@ -1,6 +1,7 @@
 <h1>--- BLACKJACK ---</h1>
 <br />
 This is a Blackjack browser game that includes:<br />
+<br />
     <li> basic functions such as "hit", "stand" and "deal new"<br />
     <li> betting feature that allows the player to place bets in $2, $5, and $10 while starting with a balance of $100<br />
     <li> a "new game" feature that when the player runs out of money, the game is over, player can choose to start a new game with full balance.<br />
@@ -22,10 +23,8 @@ This is a Blackjack browser game that includes:<br />
 <br />
 <br />
 <h2>-- Preview --</h2>
-<br />
-<br />
+![Screen Shot 2022-09-22 at 10 32 18 PM](https://user-images.githubusercontent.com/112015067/192022905-72dd64ec-a26b-43d9-aaec-55898ac38eec.png)
 ![Screen Shot 2022-09-22 at 10 31 36 PM](https://user-images.githubusercontent.com/112015067/191898880-409d0b7b-016d-4a96-8040-2f34d29871f1.png)
-
 ![Screen Shot 2022-09-22 at 10 32 18 PM](https://user-images.githubusercontent.com/112015067/191898889-d0260856-80d9-49b3-8f2f-5ed855b5d6ed.png)
 <br />
 <br />
