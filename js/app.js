@@ -207,6 +207,7 @@ function checkWin() {
 
 function handleBetTwoClick() {
     bet += 2
+    betTwoEl.disabled = true
     betFiveEl.disabled = true
     betTenEl.disabled = true
     balanceEl.textContent = `Your balance: $${calcBalance(balance)}`
@@ -216,6 +217,7 @@ function handleBetTwoClick() {
 function handleBetFiveClick() {
     bet += 5
     betTwoEl.disabled = true
+    betFiveEl.disabled = true
     betTenEl.disabled = true
     balanceEl.textContent = `Your balance: $${calcBalance(balance)}`
     betAmountEl.textContent = `Current bet: $${checkBetBtn(bet)}`
@@ -223,8 +225,9 @@ function handleBetFiveClick() {
 
 function handleBetTenClick() {
     bet += 10
-    betFiveEl.disabled = true
     betTwoEl.disabled = true
+    betFiveEl.disabled = true
+    betTenEl.disabled = true
     balanceEl.textContent = `Your balance: $${calcBalance(balance)}`
     betAmountEl.textContent = `Current bet: $${checkBetBtn(bet)}`
 }

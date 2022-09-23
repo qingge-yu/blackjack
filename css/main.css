@@ -58,7 +58,6 @@ button:disabled, button[disabled] {
     margin: 0 10px;
 }
 
-
 #center-container {
     position: relative;
     display: grid;
