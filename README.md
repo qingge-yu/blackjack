@@ -24,8 +24,11 @@ This is a Blackjack browser game that includes:<br />
 <br />
 <h2>-- Preview --</h2>
         <br />
+        <h4>Beginning of the game</h4>
 <img src="https://i.imgur.com/c5a9Ik0.png">
+        <h4>Player wins</h4>
         <img src="https://i.imgur.com/fjm5r8H.png">
+        <h4>Game over</h4>
         <img src="https://i.imgur.com/B7QPcl3.png">
 <br />
 <br />
