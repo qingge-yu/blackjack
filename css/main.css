@@ -105,10 +105,12 @@ button:disabled, button[disabled] {
     /* margin: auto; */
 }
 
-#right-btn {
+#center-display {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    /* margin: auto; */
 }
 
 #dealer, #player {
