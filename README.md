@@ -1,6 +1,5 @@
 --- BLACKJACK ---<br />
 <br />
-<br />
 This is a Blackjack browser game that includes:<br />
     - basic functions such as "hit", "stand" and "deal new"<br />
     - a betting feature that allows the player to place bets in $2, $5, and $10 while starting with a balance of $100<br />
@@ -38,6 +37,7 @@ Rules:<br />
 -- Getting Started --<br />
 <br />
 https://qingge-yu.github.io/blackjack/
+<br />
 <br />
     - If player would like to place a bet on the round, player needs to choose the bet amount before clicking the "hit" button<br />
     - For placing another bet on the following round, player would need to choose the bet amount again<br />
