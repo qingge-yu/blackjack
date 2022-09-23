@@ -23,6 +23,7 @@ let playedCards = []
 let cardCount = 0
 let balance = 100
 let bet = 0
+// let newBalance = 100
 
 
 /*----- cached element references -----*/
@@ -42,18 +43,19 @@ const betTenEl = document.getElementById('ten')
 const balanceEl = document.getElementById('balance')
 const betAmountEl = document.getElementById('bet-amount')
 const newGameEl = document.getElementById('new-game')
+const placeBetMsgEl = document.querySelector('h4')
 
 
 
 /*----- event listeners -----*/
 
-resetBtnEl.addEventListener('click', handleResetClick)
-hitBtnEl.addEventListener('click', handleHitClick)
+resetBtnEl.addEventListener('click', init)
+hitBtnEl.addEventListener('click', playerTurn)
 standBtnEl.addEventListener('click', handleStandClick)
 betTwoEl.addEventListener('click', handleBetTwoClick)
 betFiveEl.addEventListener('click', handleBetFiveClick)
 betTenEl.addEventListener('click', handleBetTenClick)
-newGameEl.addEventListener('click', handleNewGame)
+newGameEl.addEventListener('click', newGame)
 
 
 /*----- functions -----*/
@@ -83,22 +85,11 @@ function init() {
     standBtnEl.disabled = false
     hitBtnEl.disabled = false
     resetBtnEl.style.display = "none"
-    balanceEl.textContent = `Your balance: $${calBalance(balance)}`
+    balanceEl.textContent = `Your balance: $${betResult(balance)}`
     betAmountEl.textContent = ''
     betTwoEl.disabled = false
     betFiveEl.disabled = false
     betTenEl.disabled = false
-
-}
-
-
-
-function handleResetClick() {
-    init()
-}
-
-function handleHitClick() {
-    playerTurn()
 }
 
 function handleStandClick() {
@@ -116,12 +107,12 @@ function dealerTurn() {
         handValue(dealerHand)
     }
     checkWin()
-    messageDealerEl.textContent = "Dealer hand now: " + handValue(dealerHand)
+    messageDealerEl.textContent = "Dealer hand total: " + handValue(dealerHand)
 }
 
 function playerTurn() {
     drawCard(playerHand)
-    messagePlayerEl.textContent = "Your hand now: " + handValue(playerHand)
+    messagePlayerEl.textContent = "Your hand total: " + handValue(playerHand)
 }
 
 function drawCard(array) {
@@ -137,7 +128,6 @@ function drawCard(array) {
     }
 }
 
-
 function addCardToHand() {
     if (turn === 1) {
         let playerNewCard = document.createElement('div')
@@ -148,6 +138,12 @@ function addCardToHand() {
         dealerNewCard.classList.add('card', `${dealerHand[dealerHand.length - 1]}`, 'large')
         dealerCardsEl.appendChild(dealerNewCard)
     }
+}
+
+function tamegap(dealerCard) {
+    setTimeout(function () {
+
+    })
 }
 
 function handValue(array) {
@@ -190,7 +186,6 @@ function handValue(array) {
 function checkWin() {
     const playerTotal = handValue(playerHand)
     const dealerTotal = handValue(dealerHand)
-    console.log(playerTotal, dealerTotal)
     if (dealerTotal === playerTotal && dealerTotal <= 21) {
         messageEl.textContent = "It's a tie!"
     }
@@ -216,37 +211,13 @@ function checkWin() {
 }
 
 
-//--Icebox: Betting features--
-
-function checkBetBtn() {
-    if (bet === 2) {
-        return 2
-    }
-    if (bet === 5) {
-        return 5
-    }
-
-    if (bet === 10) {
-        return 10
-
-    }
-    return 0
-}
-function calBalance() {
-    balance = balance - checkBetBtn(bet)
-    if (balance < 2) {
-        messageEl.textContent = "GAME OVER"
-        newGameEl.style.display = "inline-block"
-        resetBtnEl.style.display = "none"
-    }
-    return balance
-}
+//--Icebox: Betting Features--
 
 function handleBetTwoClick() {
     bet += 2
     betFiveEl.disabled = true
     betTenEl.disabled = true
-    balanceEl.textContent = `Your balance: $${calBalance(balance)}`
+    balanceEl.textContent = `Your balance: $${calcBalance(balance)}`
     betAmountEl.textContent = `Current bet: $${checkBetBtn(bet)}`
 }
 
@@ -254,41 +225,73 @@ function handleBetFiveClick() {
     bet += 5
     betTwoEl.disabled = true
     betTenEl.disabled = true
-    balanceEl.textContent = `Your balance: $${calBalance(balance)}`
+    balanceEl.textContent = `Your balance: $${calcBalance(balance)}`
     betAmountEl.textContent = `Current bet: $${checkBetBtn(bet)}`
 }
 
 function handleBetTenClick() {
     bet += 10
+    betFiveEl.disabled = true
     betTwoEl.disabled = true
-    betTenEl.disabled = true
-    balanceEl.textContent = `Your balance: $${calBalance(balance)}`
+    balanceEl.textContent = `Your balance: $${calcBalance(balance)}`
     betAmountEl.textContent = `Current bet: $${checkBetBtn(bet)}`
 }
 
-function betResult() {
-    let newBalance = calBalance(balance)
-    let betAmt = checkBetBtn(bet)
-    if (messageEl.textContent == "You win!") {
-        newBalance = newBalance + betAmt * 2
-    } else if (messageEl.textContent == "Dealer wins!") {
-        newBalance = newBalance - betAmt
-    } else if (messageEl.textContent == "It's a tie!") {
-        newBalance = newBalance
-    }
-    balanceEl.textContent = `Your balance: $${newBalance}`
+function checkBetBtn() {
+    if (bet === 2) return 2
+    if (bet === 5) return 5
+    if (bet === 10) return 10
+    return 0
 }
 
-function handleNewGame() {
-    newGameEl.style.display = 'none'
-    newGame()
+function calcBalance() {
+    balance = balance - checkBetBtn(bet)
+    if (balance + checkBetBtn(bet) < 2) {
+        messageEl.textContent = "GAME OVER"
+        newGameEl.style.display = "inline-block"
+        resetBtnEl.style.display = "none"
+    }
+    return balance
+}
+
+function betResult() {
+    let betAmt = checkBetBtn(bet)
+    if (messageEl.textContent === "You win!") {
+        balance = calcBalance(balance) + (betAmt * 3)
+    }
+    if (messageEl.textContent === "Dealer wins!") {
+        balance = calcBalance(balance) + betAmt
+    }
+    if (messageEl.textContent === "It's a tie!") {
+        balance = calcBalance(balance)
+    }
+    balanceEl.textContent = `Your balance: $${balance}`
+    return balance
 }
 
 function newGame() {
+    newGameEl.style.display = 'none'
     init()
-    calBalance(balance) == 100
+    balance = 100
+    betResult(balance) == 100
     bet = 0
+    placeBetMsgEl.style.display = 'inline-block'
+    betTwoEl.style.display = 'inline-block'
+    betFiveEl.style.display = 'inline-block'
+    betTenEl.style.display = 'inline-block'
+    balanceEl.style.display = 'inline-block'
+    betAmountEl.style.display = 'inline-block'
+    hitBtnEl.style.display = 'inline-block'
+    standBtnEl.style.display = 'inline-block'
 }
 
-// start game
-newGame()
+// before starting game
+placeBetMsgEl.style.display = 'none'
+betTwoEl.style.display = 'none'
+betFiveEl.style.display = 'none'
+betTenEl.style.display = 'none'
+balanceEl.style.display = 'none'
+betAmountEl.style.display = 'none'
+hitBtnEl.style.display = 'none'
+standBtnEl.style.display = 'none'
+resetBtnEl.style.display = 'none'

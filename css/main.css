@@ -8,9 +8,13 @@ body {
 }
 
 h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: rgb(241, 201, 115);
     margin-bottom: 5px;
     margin-top: -5px;
+    width: 170px;
 }
 
 button {
