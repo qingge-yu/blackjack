@@ -24,8 +24,6 @@ This is a Blackjack browser game that includes:<br />
 <h2>-- Preview --</h2>
 <br />
 <br />
-![Screen Shot 2022-09-22 at 10 31 05 PM](https://user-images.githubusercontent.com/112015067/191898870-958a9505-9f70-4dc8-a2a9-8aa21a2420dc.png)
-
 ![Screen Shot 2022-09-22 at 10 31 36 PM](https://user-images.githubusercontent.com/112015067/191898880-409d0b7b-016d-4a96-8040-2f34d29871f1.png)
 
 ![Screen Shot 2022-09-22 at 10 32 18 PM](https://user-images.githubusercontent.com/112015067/191898889-d0260856-80d9-49b3-8f2f-5ed855b5d6ed.png)
